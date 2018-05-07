@@ -345,6 +345,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 temp_string = String.valueOf(temp_char);
                 String add_sub_array[];
                 String mult_div_array[];
+                if(temp_string.substring(0, 1).equals("-")){
+                    temp_string = "@" + temp_string.substring(1,temp_string.length());
+                }
                 add_sub_array = temp_string.split("(?=[+-])|(?<=[+-])");
                 i = 0;
                 while(i < add_sub_array.length){
@@ -353,6 +356,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     j = 0;
                     while(j < mult_div_array.length){
                         if(mult_div_array[j].equals("*")){
+                            if(mult_div_array[j-1].substring(0,1).equals("@")){
+                                mult_div_array[j-1] = "-" + mult_div_array[j-1].substring(1, mult_div_array[j-1].length());
+                            }
                             first_num = Double.valueOf(mult_div_array[j-1]);
                             second_num = Double.valueOf(mult_div_array[j+1]);
                             result = first_num * second_num;
@@ -361,6 +367,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             add_sub_array[i] = str_result;
                         }
                         if(mult_div_array[j].equals("/")){
+                            if(mult_div_array[j-1].substring(0,1).equals("@")){
+                                mult_div_array[j-1] = "-" + mult_div_array[j-1].substring(1, mult_div_array[j-1].length());
+                            }
                             first_num = Double.valueOf(mult_div_array[j-1]);
                             second_num = Double.valueOf(mult_div_array[j+1]);
                             result = first_num / second_num;
@@ -377,16 +386,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 text.setText(Arrays.toString(add_sub_array));
                 while(i < add_sub_array.length){
                         if(add_sub_array[i].equals("+")){
+                            if(add_sub_array[i-1].substring(0,1).equals("@")){
+                                add_sub_array[i-1] = "-" + add_sub_array[i-1].substring(1, add_sub_array[i-1].length());
+                            }
                             first_num = Double.valueOf(add_sub_array[i-1]);
                             second_num = Double.valueOf(add_sub_array[i+1]);
-                            result += first_num + second_num;
+                            result = first_num + second_num;
                             str_result = String.valueOf(result);
                             add_sub_array[i+1] = str_result;
                         }
                         if(add_sub_array[i].equals("-")){
+                            if(add_sub_array[i-1].substring(0,1).equals("@")){
+                                add_sub_array[i-1] = "-" + add_sub_array[i-1].substring(1, add_sub_array[i-1].length());
+                            }
                             first_num = Double.valueOf(add_sub_array[i-1]);
                             second_num = Double.valueOf(add_sub_array[i+1]);
-                            result += first_num - second_num;
+                            result = first_num - second_num;
                             str_result = String.valueOf(result);
                             add_sub_array[i+1] = str_result;
                         }
