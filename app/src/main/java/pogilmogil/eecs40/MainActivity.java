@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Double first_num;
     Double second_num;
     Double result = 0.00000;
+    private static DecimalFormat dcformat = new DecimalFormat("#.######");
     int i, j;
 
 
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button17.setOnClickListener(this);
         button18.setOnClickListener(this);
         button19.setOnClickListener(this);
+
     }
 
     @Override
@@ -410,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(add_sub_array.length == 1){
                     result = Double.valueOf(add_sub_array[0]);
                 }
-                str_result = String.valueOf(result);
+                str_result = dcformat.format(result);
                 text.setText(str_result);
                 break;
         }
