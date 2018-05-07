@@ -223,6 +223,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonMIN:
                 temp_char = text.getText();
                 temp_string = String.valueOf(temp_char);
+                if(temp_string.equals("")){
+                    temp_string += "0-";
+                    text.setText(temp_string);
+                    break;
+                }
                 get_char = temp_string.substring(temp_string.length() - 1);
                 if(temp_string.equals("INVALID")) {
                     break;
@@ -340,9 +345,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 temp_string = String.valueOf(temp_char);
                 String add_sub_array[];
                 String mult_div_array[];
-                if(temp_string.substring(0,1).equals("-")){
-                    temp_string = "@"+temp_string.substring(1,temp_string.length());
-                }
                 add_sub_array = temp_string.split("(?=[+-])|(?<=[+-])");
                 i = 0;
                 while(i < add_sub_array.length){
@@ -355,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             second_num = Double.valueOf(mult_div_array[j+1]);
                             result = first_num * second_num;
                             str_result = String.valueOf(result);
+                            mult_div_array[j+1] = str_result;
                             add_sub_array[i] = str_result;
                         }
                         if(mult_div_array[j].equals("/")){
@@ -362,6 +365,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             second_num = Double.valueOf(mult_div_array[j+1]);
                             result = first_num / second_num;
                             str_result = String.valueOf(result);
+                            mult_div_array[j+1] = str_result;
                             add_sub_array[i] = str_result;
                         }
                         j++;
