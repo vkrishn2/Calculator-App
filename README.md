@@ -1,6 +1,3 @@
-# EECS40_PogilMogil_Assignment2
-Assignment 2 for EECS40 by team: PogilMogil
-
 This program is a simple calculator made in Android Studio that has the following operators:
   1. Addition (+)
   2. Subtraction (-)
